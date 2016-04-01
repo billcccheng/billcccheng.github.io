@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+    <!-- jQuery -->
+    <script src="../bower_components/jquery/dist/jquery.min.js"></script>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="A graduate student who wants to be a game programmer.">
+    <meta name="author" content="Naga Chiang">
+
+    <title>Soft Body Simulation｜Cheng-Han "Naga" Chiang</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- MetisMenu CSS -->
+    <link href="../bower_components/metisMenu/dist/metisMenu.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="../dist/css/sb-admin-2.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="../bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- Social Buttons CSS -->
+    <link href="../bower_components/bootstrap-social/bootstrap-social.css" rel="stylesheet">
+
+    <!-- Icons -->
+    <!-- For IE 9 and below. ICO should be 32x32 pixels in size -->
+    <!--[if IE]><link rel="shortcut icon" href="../favicon.ico"><![endif]-->
+
+    <!-- Touch Icons - iOS and Android 2.1+ 180x180 pixels in size. --> 
+    <link rel="apple-touch-icon-precomposed" href="../favicon.ico">
+
+    <!-- Firefox, Chrome, Safari, IE 11+ and Opera. 196x196 pixels in size. -->
+    <link rel="icon" href="../favicon.ico">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+    <div id="wrapper">
+
+        <!-- Navigation -->
+        <!--
+        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+            <script>$("nav").load("index.html nav");</script>
+        </nav>
+        -->
+
+        <!-- Navigation -->
+        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                </button>
+                <b><a class="navbar-brand" href="index.html">Cheng-Han "Naga" Chiang</a></b>
+            </div>
+            <!-- /.navbar-header -->
+
+            <ul class="nav navbar-top-links navbar-right">
+
+            </ul>
+            <!-- /.navbar-top-links -->
+
+            <div class="navbar-default sidebar" role="navigation">
+                <div class="sidebar-nav navbar-collapse">
+                    <ul class="nav" id="side-menu">
+                        <li>
+                            <a href="index.html"><i class="fa fa-home fa-fw"></i> Home</a>
+                        </li>
+                        <li>
+                            <a href="about.html"><i class="fa fa-question fa-fw"></i> About</a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-cubes fa-fw"></i> Projects<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="#"><i class="fa fa-gamepad fa-fw"></i> Games<span class="fa arrow"></span></a>
+                                    <ul class="nav nav-third-level">
+                                    <li>
+                                         <a href="RobotEscaper.html">Robot Escaper</a>
+                                    </li>
+                                    <li>
+                                         <a href="PixelDungeonLegends.html">Pixel Dungeon: Legends</a>
+                                    </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="#"><i class="fa fa-users fa-fw"></i> Artificial Intelligence<span class="fa arrow"></span></a>
+                                    <ul class="nav nav-third-level">
+                                    <li>
+                                        <a href="Fib2584AI.html">Fib2584 AI</a>
+                                    </li>
+                                    <li>
+                                        <a href="Pacman.html">The Pacman Projects</a>
+                                    </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="#"><i class="fa fa-dribbble fa-fw"></i> Animation<span class="fa arrow"></span></a>
+                                    <ul class="nav nav-third-level">
+                                    <li>
+                                        <a href="SoftBodySimulation.html">Soft Body Simulation</a>
+                                    </li>
+                                    <li>
+                                        <a href="ForwardKinematics.html">Forward Kinematics</a>
+                                    </li>
+                                    <li>
+                                        <a href="InverseKinematics.html">Inverse Kinematics</a>
+                                    </li>
+                                    </ul>
+                                </li>
+                                <!--
+                                <li>
+                                    <a href="#"><i class="fa fa-image fa-fw"></i> Graphics<span class="fa arrow"></span></a>
+                                    <ul class="nav nav-third-level">
+                                    <li>
+                                        <a href="#">3D Model Loader</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Hierarchical Modeling</a>
+                                    </li>
+                                    </ul>
+                                </li>
+                                -->
+                                <!-- /.nav-third-level -->
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                        <li>
+                            <a href="contact.html"><i class="fa fa-envelope fa-fw"></i> Contact</a>
+                        </li>
+                    </ul>
+                    
+                    <!-- Social Buttons -->
+                    <div class="row show-grid">
+                        <div class="col-lg-12">
+                              <a class="btn btn-social-icon btn-linkedin" href="https://www.linkedin.com/in/chchiangnaga" target="_blank">
+                                <i class="fa fa-linkedin"></i></a>
+                              <a class="btn btn-social-icon btn-github" href="https://github.com/Cerement" target="_blank">
+                                <i class="fa fa-github"></i></a>
+                        </div>
+                    </div>
+                    
+                    <!-- Email -->
+                    <div class="text-center">
+                        <h6><i class="fa fa-envelope fa-fw"></i> chchiang.cs03g<i class="fa fa-at fa-fw"></i>g2.nctu.edu.tw</h6>
+                    </div>
+
+                </div>  
+                <!-- /.sidebar-collapse -->
+            </div>
+            <!-- /.navbar-static-side -->
+        </nav>
+
+        <!-- Page Content -->
+        <div id="page-wrapper">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1 class="page-header"><b>Soft Body Simulation</b></h1>
+
+                        <div class="text-center">
+                            <iframe width="640" height="480" src="https://www.youtube.com/embed/xZAxX9luY2E?rel=0" frameborder="0" allowfullscreen></iframe></br>
+                            <h5>RK4, spring coef. 8000, damper coef. 20</h5>
+                        </div>
+
+                        <!-- Overview -->
+                        <h2><b>Overview</b></h2>
+                        <hr/>
+                        <p>
+                            This project simulates a flexible cube falling on the floor, using a framework developed with C++ and OpenGL by <a href="http://gpl.cs.nctu.edu.tw/" target="_blank">GPLab</a>, NCTU. For all the videos of result, please check out the last section.
+                        </p>
+                        <p>
+                            The cube is constructed by a set of particles, which are connected with 3 kinds of springs. With these particles and springs, we can integrate the spring forces and damper forces to estimate the next positions for each particle. In this case, I implemented <a href="https://en.wikipedia.org/wiki/Euler_method" target="_blank">Explicit Euler Method</a> and <a href="https://en.wikipedia.org/wiki/Runge%E2%80%93Kutta_methods" target="_blank">Runge-Kutta 4th-Order Method</a> to solve the differential equations. This is a simple approach to simulate solid deformable objects.
+                        </p>
+                        <p>
+                            Finally, because it's a plane there, I also used a simple method to resolve the point-plane collision detection, which can bounce back the cube to the air.
+                        </p>
+                        </br>
+
+                        <!-- Mass-Spring System -->
+                        <h2><b>Mass-Spring System</b></h2>
+                        <hr/>
+                        <div class="text-center">
+                            <img src="../images/softbody_1.jpg" width="30%"/></br>
+                            <h5>Cube of Particles</h5>
+                        </div>
+                        <p>
+                            As the image above, these particles constructs the cube. In this simulation, it took 1000 particles to form a 10x10x10 cube. Then, the images below shows each kind of the springs connected between particles.
+                        </p></br></br>
+                        <div class="row text-center">
+                            <div class="col-lg-4">
+                                <img src="../images/softbody_2.jpg" width="80%"/></br>
+                                <h5>Structural Springs</h5>
+                            </div>
+                            <div class="col-lg-4">
+                                <img src="../images/softbody_3.jpg" width="80%"/></br>
+                                <h5>Shearing Springs</h5>
+                            </div>
+                            <div class="col-lg-4">
+                                <img src="../images/softbody_4.jpg" width="80%"/></br>
+                                <h5>Bending Springs</h5>
+                            </div>
+                        </div></br>
+                        <ul style="font-size:16px">
+                            <li>
+                                <b>Structural Springs</b>
+                            </li></br>
+                            <p>
+                                Structural Springs connect from each particle to its 6 adjacent neighbors, including up, down, left, right, forward, backward. These springs establish the basic structure of the cube.
+                            </p></br>
+                            <li>
+                                <b>Shearing Springs</b>
+                            </li></br>
+                            <p>
+                                Shearing Springs connect from each particle to its 20 diagonal neighbors. These springs can prevent the cube from excessive shearing.
+                            </p></br>
+                            <li>
+                                <b>Bending Springs</b>
+                            </li></br>
+                            <p>
+                                Bending Springs connect from each particle to its 6 second adjacent neighbors, kind of like the structural springs but these springs skip the first neighbor instead. They can prevent the cube from folding all over.
+                            </p></br>
+                        </ul>
+
+                        <!-- Integration -->
+                        <h2><b>Integration</b></h2>
+                        <hr/>
+                        <ul style="font-size:16px">
+                            <li><b><a href="https://en.wikipedia.org/wiki/Euler_method" target="_blank">Euler Method</a></b></li>
+                            <div class="row text-center">
+                                <img src="../images/EulerMethod.png" width="40%"/></br>
+                                <h5>Illustration of the Euler Method (from <a href="https://en.wikipedia.org/wiki/Euler_method" target="_blank">Wikipedia</a>)</h5>
+                            </div>
+                            <p>
+                                The blue curve in this graph is the unknown real values, while the red one is the approximation by Euler Method. From A0 to A1, this method only takes the status at position A0 to estimate the position after a small time step. In this case, physically, the Euler Method takes the net force at A0 and derive the acceleration to approximate the position at A1 with a small time step.
+                            </p>
+                            <p>
+                                Because the Euler Method is a first-order method, which means it needs a rather small time step, otherwise the local error (error per step) and the global error (error at a given time) would be very big resulting in unstable system. However, the Euler Method is rather low-cost and also a basic method which is easy to implement.
+                            </p>
+                            </br>
+                            <li><b><a href="https://en.wikipedia.org/wiki/Runge%E2%80%93Kutta_methods" target="_blank">Runge–Kutta 4th-Order Method</a></b></li>
+                            <div class="row text-center">
+                                <img src="../images/RK4.gif" width="40%"/></br>
+                                <h5>Illustration of the RK4 (from <a href="http://www.physics.drexel.edu/students/courses/Comp_Phys/Integrators/rk4.html" target="_blank">Department of Physics, Drexel University</a>)</h5>
+                            </div>
+                            <p>
+                                First, we define the following equations (h is the step size, h > 0).
+                            </p></br>
+                            <div class="row col-lg-offset-1" style="font-size:20px">
+                                <b>
+                                    y<sub>n+1</sub> = y<sub>n</sub> + (h/6)(k<sub>1</sub> + 2k<sub>2</sub> + 2k<sub>3</sub> + k<sub>4</sub>)</br>
+                                    t<sub>n+1</sub> = t<sub>n</sub> + h</br>
+                                </b>
+                            </div></br>
+                            <p>
+                                For k<sub>1</sub>, k<sub>2</sub>, k<sub>3</sub> and k<sub>4</sub>:
+                            </p></br>
+                            <div class="row col-lg-offset-1" style="font-size:20px">
+                                <b>
+                                    k<sub>1</sub> = f(t<sub>n</sub>, y<sub>n</sub>)</br>
+                                    k<sub>2</sub> = f(t<sub>n</sub> + (h/2), y<sub>n</sub> + (h/2)k<sub>1</sub>)</br>
+                                    k<sub>3</sub> = f(t<sub>n</sub> + (h/2), y<sub>n</sub> + (h/2)k<sub>2</sub>)</br>
+                                    k<sub>4</sub> = f(t<sub>n</sub> + h, y<sub>n</sub> + hk<sub>3</sub>)</br>
+                                </b>
+                            </div></br>
+                            <p>
+                                Which means:
+                            </p>
+                            <ul style="font-size:16px">
+                                <li>k<sub>1</sub> is the increment based on the slope at the <b>beginning</b> of the interval, using <b>y<sub>n</sub></b>.</li>
+                                <li>k<sub>2</sub> is the increment based on the slope at the <b>midpoint</b> of the interval, using <b>y<sub>n</sub> + (h/2)k<sub>1</sub></b>.</li>
+                                <li>k<sub>3</sub> is the increment based on the slope at the <b>midpoint</b> of the interval, using <b>y<sub>n</sub> + (h/2)k<sub>2</sub></b>.</li>
+                                <li>k<sub>4</sub> is the increment based on the slope at the <b>end</b> of the interval, using <b>y<sub>n</sub> + hk<sub>3</sub></b>.</li>
+                            </ul></br>
+                            <p>
+                                The RK4 method is a fourth-order method, meaning that it's rather high-cost and more precise than the Euler Method. It's local error is on the order of O(h<sup>5</sup>), while the global error is order O(h<sup>4</sup>).
+                            </p>
+                        </ul>
+                        </br>
+
+                        <!-- Collision Detect -->
+                        <h2><b>Collision Detect</b></h2>
+                        <hr/>
+                        <p>
+                            There is one thing left to handle is the point-plane collision when the cube is falling right on the plane. For every particle, once it satisfies the following conditions, it would be considered that the collision is happening.
+                        </p>
+                        <ul style="font-size: 16px">
+                            <li>The particle's position is close enough to the plane.</li>
+                            <li>The particle is moving toward the plane.</li>
+                        </ul>
+                        <p>
+                            When the particle and the plane are collided, the system would revert the normal component of the velocity. A coefficient smaller than 1 to represent the energy loss could be applied to the reverted velocity. So this is an simple way to handle the point-plane collision.
+                        </p>
+                        </br>
+
+                        <!-- Results -->
+                        <h2><b>Results</b></h2>
+                        <hr/>
+                        <ul>
+                            <li>Euler Method, spring coef. 8000, damper coef. 20</br></br>
+                                <iframe width="640" height="480" src="https://www.youtube.com/embed/Tdm5FKujJL0?rel=0" frameborder="0" allowfullscreen></iframe>
+                            </li></br>
+                            <li>Euler Method, spring coef. 800, damper coef. 60</br></br>
+                                <iframe width="640" height="480" src="https://www.youtube.com/embed/5kBOrZvvIdk?rel=0" frameborder="0" allowfullscreen></iframe>
+                            </li></br>
+                            <li>RK4, spring coef. 8000, damper coef. 20</br></br>
+                                <iframe width="640" height="480" src="https://www.youtube.com/embed/xZAxX9luY2E?rel=0" frameborder="0" allowfullscreen></iframe>
+                            </li></br>
+                        </ul>
+                        </br>
+
+                    </div>
+                    <!-- /.col-lg-12 -->
+                </div>
+                <!-- /.row -->
+            </div>
+            <!-- /.container-fluid -->
+            
+            <!-- footer -->
+            <footer>
+                <script>$("footer").load("index.html footer");</script>
+            </footer>
+
+        </div>
+        <!-- /#page-wrapper -->
+    </div>
+    <!-- /#wrapper -->
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src="../bower_components/metisMenu/dist/metisMenu.min.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="../dist/js/sb-admin-2.js"></script>
+
+</body>
+
+</html>

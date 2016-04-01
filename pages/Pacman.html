@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+    <!-- jQuery -->
+    <script src="../bower_components/jquery/dist/jquery.min.js"></script>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="A graduate student who wants to be a game programmer.">
+    <meta name="author" content="Naga Chiang">
+
+    <title>The Pacman Projects｜Cheng-Han "Naga" Chiang</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- MetisMenu CSS -->
+    <link href="../bower_components/metisMenu/dist/metisMenu.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="../dist/css/sb-admin-2.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="../bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- Social Buttons CSS -->
+    <link href="../bower_components/bootstrap-social/bootstrap-social.css" rel="stylesheet">
+
+    <!-- Icons -->
+    <!-- For IE 9 and below. ICO should be 32x32 pixels in size -->
+    <!--[if IE]><link rel="shortcut icon" href="../favicon.ico"><![endif]-->
+
+    <!-- Touch Icons - iOS and Android 2.1+ 180x180 pixels in size. --> 
+    <link rel="apple-touch-icon-precomposed" href="../favicon.ico">
+
+    <!-- Firefox, Chrome, Safari, IE 11+ and Opera. 196x196 pixels in size. -->
+    <link rel="icon" href="../favicon.ico">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+    <div id="wrapper">
+
+        <!-- Navigation -->
+        <!--
+        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+            <script>$("nav").load("index.html nav");</script>
+        </nav>
+        -->
+
+        <!-- Navigation -->
+        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                </button>
+                <b><a class="navbar-brand" href="index.html">Cheng-Han "Naga" Chiang</a></b>
+            </div>
+            <!-- /.navbar-header -->
+
+            <ul class="nav navbar-top-links navbar-right">
+
+            </ul>
+            <!-- /.navbar-top-links -->
+
+            <div class="navbar-default sidebar" role="navigation">
+                <div class="sidebar-nav navbar-collapse">
+                    <ul class="nav" id="side-menu">
+                        <li>
+                            <a href="index.html"><i class="fa fa-home fa-fw"></i> Home</a>
+                        </li>
+                        <li>
+                            <a href="about.html"><i class="fa fa-question fa-fw"></i> About</a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-cubes fa-fw"></i> Projects<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="#"><i class="fa fa-gamepad fa-fw"></i> Games<span class="fa arrow"></span></a>
+                                    <ul class="nav nav-third-level">
+                                    <li>
+                                         <a href="RobotEscaper.html">Robot Escaper</a>
+                                    </li>
+                                    <li>
+                                         <a href="PixelDungeonLegends.html">Pixel Dungeon: Legends</a>
+                                    </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="#"><i class="fa fa-users fa-fw"></i> Artificial Intelligence<span class="fa arrow"></span></a>
+                                    <ul class="nav nav-third-level">
+                                    <li>
+                                        <a href="Fib2584AI.html">Fib2584 AI</a>
+                                    </li>
+                                    <li>
+                                        <a href="Pacman.html">The Pacman Projects</a>
+                                    </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="#"><i class="fa fa-dribbble fa-fw"></i> Animation<span class="fa arrow"></span></a>
+                                    <ul class="nav nav-third-level">
+                                    <li>
+                                        <a href="SoftBodySimulation.html">Soft Body Simulation</a>
+                                    </li>
+                                    <li>
+                                        <a href="ForwardKinematics.html">Forward Kinematics</a>
+                                    </li>
+                                    <li>
+                                        <a href="InverseKinematics.html">Inverse Kinematics</a>
+                                    </li>
+                                    </ul>
+                                </li>
+                                <!--
+                                <li>
+                                    <a href="#"><i class="fa fa-image fa-fw"></i> Graphics<span class="fa arrow"></span></a>
+                                    <ul class="nav nav-third-level">
+                                    <li>
+                                        <a href="#">3D Model Loader</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Hierarchical Modeling</a>
+                                    </li>
+                                    </ul>
+                                </li>
+                                -->
+                                <!-- /.nav-third-level -->
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                        <li>
+                            <a href="contact.html"><i class="fa fa-envelope fa-fw"></i> Contact</a>
+                        </li>
+                    </ul>
+                    
+                    <!-- Social Buttons -->
+                    <div class="row show-grid">
+                        <div class="col-lg-12">
+                              <a class="btn btn-social-icon btn-linkedin" href="https://www.linkedin.com/in/chchiangnaga" target="_blank">
+                                <i class="fa fa-linkedin"></i></a>
+                              <a class="btn btn-social-icon btn-github" href="https://github.com/Cerement" target="_blank">
+                                <i class="fa fa-github"></i></a>
+                        </div>
+                    </div>
+                    
+                    <!-- Email -->
+                    <div class="text-center">
+                        <h6><i class="fa fa-envelope fa-fw"></i> chchiang.cs03g<i class="fa fa-at fa-fw"></i>g2.nctu.edu.tw</h6>
+                    </div>
+
+                </div>  
+                <!-- /.sidebar-collapse -->
+            </div>
+            <!-- /.navbar-static-side -->
+        </nav>
+
+        <!-- Page Content -->
+        <div id="page-wrapper">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1 class="page-header"><b>The Pacman Projects</b></h1>
+
+                        <div class="text-center">
+                            <img src="../images/pacman_game.gif" width="60%"/></br>
+                            <h5>gif made by <a href="http://ai.berkeley.edu/project_overview.html" target="_blank">UC Berkeley CS188</a></h5>
+                        </div>
+
+                        <!-- Overview -->
+                        <h2><b>Overview</b></h2>
+                        <hr/>
+                        <p>
+                            <a href="http://ai.berkeley.edu/project_overview.html" target="_blank">The Pacman Projects</a> were originally developed with Python 2.7 by UC Berkeley CS188, which were designed for students to practice the foundational AI concepts, such as informed state-space search, probabilistic inference, and reinforcement learning.
+                        </p>
+                        <p>
+                            As a TA of "Introduction to Artificial Intelligence" in spring 2015, I googled these materials and found it interesting for teaching, so I suggested applying these to our course. However, we didn't use the whole projects. To match the contents in our course, we just chose some of them to modify, and handed them out as assignments.
+                        </p>
+                        <p>
+                            In addition, we also held a <b>PacmanCTF Tournament</b> using the special version of Pacman modified by <a href="https://github.com/Po-haoHuang" target="_blank">Po-Hao Huang</a> and me. All students from this course had to participate as teams. The tournament turned out successfully like an exciting esports competition when the top 8 matched up in class
+                        </p>
+                        <br/>
+
+                        <!-- Assignments -->
+                        <h2><b>Assignments</b></h2>
+                        <hr/>
+                        <p>
+                            All the assignments in this course are listed below. For more information, click the link of each assignments to download the materials of it. These slides were made and presented by me, except for the project 01, which was by <a href="https://github.com/Po-haoHuang" target="_blank">Po-Hao Huang</a>. The source code used in assignments were tested and revised a few to fit the needs in this course.
+                        </p></br>
+                        <ul style="font-size:16px">
+                            <li>
+                                <a href="../uploads/PacmanProject-00_Getting_Started.rar" target="_blank">Project 00: Getting Started</a>
+                                <ul>
+                                    <li>Meet The Pacman Projects.</li>
+                                    <li>Set the environment for it. (Python 2.7, Spyder)</li>
+                                    <li>Play!</li>
+                                </ul>
+                            </li></br>
+                            <li>
+                                <a href="../uploads/PacmanProject-01_Rule-based_System.rar" target="_blank">Project 01: Rule-Based System</a>
+                                <ul>
+                                    <li>GoEastAgent</br></br><img src="../images/Pacman_P1-1.jpg" width="30%"/></br></br></li>
+                                    <li>CleanerAgent</br></br><img src="../images/Pacman_P1-2.jpg" width="30%"/></br></br></li>
+                                    <li>FroggerAgent</br></br><img src="../images/Pacman_P1-3.jpg" width="30%"/></br></br></li>
+                                    <li>SnakeAgent</br></br><img src="../images/Pacman_P1-4.jpg" width="50%"/></br></br></li>
+                                </ul>
+                            </li></br>
+                            <li>
+                                <a href="../uploads/PacmanProject-02_Search.rar" target="_blank">Project 02: Search</a>
+                                <ul>
+                                    <li>Depth-First Search (DFS)</li>
+                                    <li>Breadth-First Search (BFS)</li>
+                                    <li>A* Search</li>
+                                    </br><img src="../images/Pacman_P2.jpg" width="30%"/></br>
+                                </ul>
+                            </li></br>
+                            <li>
+                                <a href="../uploads/PacmanProject-03_Multi-Agent_Pacman.rar" target="_blank">Project 03: Multi-Agent Pacman</a>
+                                <ul>
+                                    <li>Reflex Agent</li>
+                                    <li>Minimax</li>
+                                    <li>Alpha-Beta Pruning</li>
+                                    <li>Evaluation Function</li>
+                                    </br><img src="../images/Pacman_P3.jpg" width="50%"/></br>
+                                </ul>
+                            </li></br>
+                            <li>
+                                <a href="../uploads/PacmanProject-Level_Design.rar" target="_blank">Project: Level Design</a>
+                                <ul>
+                                    <li>Design a set of rules to make a new version of Pacman.</li>
+                                </ul>
+                            </li></br>
+                            <li>
+                                <a href="../uploads/PacmanProject-PacmanCTF.rar" target="_blank">Project: PacmanCTF</a>
+                                <ul>
+                                    <li>A new version of Pacman mod made by <a href="https://github.com/Po-haoHuang" target="_blank">Po-Hao Huang</a> and me.</li>
+                                    <li>Students could use any technique they had learned to compete against one another.</li>
+                                    <li>Round-Robin Qualifiers (offline)</li>
+                                    <li>Top 8: Single Elimination (in class)</li>
+                                    </br><img src="../images/Pacman_CTF.jpg" width="50%"/></br>
+                                </ul>
+                            </li></br>
+                        </ul>
+
+                        <!-- PacmanCTF Tournament -->
+                        <h2><b>PacmanCTF Tournament</b></h2>
+                        <hr/>
+                        <div class="text-center">
+                            <img src="../images/Pacman_CTF.jpg" width="70%"/></br>
+                            <h5>New rules, new item, new map!</h5>
+                        </div>
+                        <ul style="font-size:16px">
+                            <li>
+                                Tournament
+                                <ul>
+                                    <li>Round-Robin Qualifiers (offline)</li>
+                                    <li>Top 8: Single Elimination (in class)</li>
+                                </ul>
+                            </li></br>
+                            <li>
+                                Features
+                                <ul>
+                                    <li>2 Teams, 3 agents per team</li>
+                                    <li>Total 1800 actions (300 per agent)</li>
+                                    <li>If a agent is dead, it would resurrect at the spawning point.</li>
+                                    <li>Agent is ghost on its team's side, while it would transform into a pacman once it crosses the territory.</li>
+                                    <li>Agents could only eat items on the other side.</li>
+                                    <li>Agents could only know the position of enemy's agents when their distance is less than 3.</li>
+                                    <li><b>Sonar</b>: returns noisy distances, which are values within real distance [-3, +3].</li>
+                                    <li><b>Flags</b>: gain 2 points per action until this agent dies.</li>
+                                </ul>
+                            </li></br>
+                            <li>
+                                Rules
+                                <ul>
+                                    <li>Environment: Intel i5-430M (2.26GHz, 3MB L3 cache)</li>
+                                    <li>Time limit for initialization: >15 sec, lose</li>
+                                    <li>Time limit for action
+                                        <ul>
+                                            <li>>1 sec: Warning</li>
+                                            <li>>3 sec: Lose</li>
+                                            <li>3 Warnings: Lose</li>
+                                        </ul>
+                                    </li>
+                                    <li>If the AI crashes or returns an invalid move, that team loses.</li>
+                                    <li>No multi-threading</li>
+                                    <li>Turn off all outputs</li>
+                                </ul>
+                            </li></br>
+                        </ul>
+                        <div class="text-center">
+                            <iframe width="640" height="480" src="https://www.youtube.com/embed/Z_L67oJmthg?rel=0" frameborder="0" allowfullscreen></iframe></br>
+                            <h5>PacmanCTF Tournament 2015 Grand Final - 31_KFC v.s. 09_myTeam</h5>
+                        </div>
+                        <br/>
+                    </div>
+                    <!-- /.col-lg-12 -->
+                </div>
+                <!-- /.row -->
+            </div>
+            <!-- /.container-fluid -->
+            
+            <!-- footer -->
+            <footer>
+                <script>$("footer").load("index.html footer");</script>
+            </footer>
+
+        </div>
+        <!-- /#page-wrapper -->
+    </div>
+    <!-- /#wrapper -->
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src="../bower_components/metisMenu/dist/metisMenu.min.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="../dist/js/sb-admin-2.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+    <!-- jQuery -->
+    <script src="../bower_components/jquery/dist/jquery.min.js"></script>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="A graduate student who wants to be a game programmer.">
+    <meta name="author" content="Naga Chiang">
+
+    <title>Forward Kinematics｜Cheng-Han "Naga" Chiang</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- MetisMenu CSS -->
+    <link href="../bower_components/metisMenu/dist/metisMenu.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="../dist/css/sb-admin-2.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="../bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- Social Buttons CSS -->
+    <link href="../bower_components/bootstrap-social/bootstrap-social.css" rel="stylesheet">
+
+    <!-- Icons -->
+    <!-- For IE 9 and below. ICO should be 32x32 pixels in size -->
+    <!--[if IE]><link rel="shortcut icon" href="../favicon.ico"><![endif]-->
+
+    <!-- Touch Icons - iOS and Android 2.1+ 180x180 pixels in size. --> 
+    <link rel="apple-touch-icon-precomposed" href="../favicon.ico">
+
+    <!-- Firefox, Chrome, Safari, IE 11+ and Opera. 196x196 pixels in size. -->
+    <link rel="icon" href="../favicon.ico">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+    <div id="wrapper">
+
+        <!-- Navigation -->
+        <!--
+        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+            <script>$("nav").load("index.html nav");</script>
+        </nav>
+        -->
+
+        <!-- Navigation -->
+        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                </button>
+                <b><a class="navbar-brand" href="index.html">Cheng-Han "Naga" Chiang</a></b>
+            </div>
+            <!-- /.navbar-header -->
+
+            <ul class="nav navbar-top-links navbar-right">
+
+            </ul>
+            <!-- /.navbar-top-links -->
+
+            <div class="navbar-default sidebar" role="navigation">
+                <div class="sidebar-nav navbar-collapse">
+                    <ul class="nav" id="side-menu">
+                        <li>
+                            <a href="index.html"><i class="fa fa-home fa-fw"></i> Home</a>
+                        </li>
+                        <li>
+                            <a href="about.html"><i class="fa fa-question fa-fw"></i> About</a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-cubes fa-fw"></i> Projects<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="#"><i class="fa fa-gamepad fa-fw"></i> Games<span class="fa arrow"></span></a>
+                                    <ul class="nav nav-third-level">
+                                    <li>
+                                         <a href="RobotEscaper.html">Robot Escaper</a>
+                                    </li>
+                                    <li>
+                                         <a href="PixelDungeonLegends.html">Pixel Dungeon: Legends</a>
+                                    </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="#"><i class="fa fa-users fa-fw"></i> Artificial Intelligence<span class="fa arrow"></span></a>
+                                    <ul class="nav nav-third-level">
+                                    <li>
+                                        <a href="Fib2584AI.html">Fib2584 AI</a>
+                                    </li>
+                                    <li>
+                                        <a href="Pacman.html">The Pacman Projects</a>
+                                    </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="#"><i class="fa fa-dribbble fa-fw"></i> Animation<span class="fa arrow"></span></a>
+                                    <ul class="nav nav-third-level">
+                                    <li>
+                                        <a href="SoftBodySimulation.html">Soft Body Simulation</a>
+                                    </li>
+                                    <li>
+                                        <a href="ForwardKinematics.html">Forward Kinematics</a>
+                                    </li>
+                                    <li>
+                                        <a href="InverseKinematics.html">Inverse Kinematics</a>
+                                    </li>
+                                    </ul>
+                                </li>
+                                <!--
+                                <li>
+                                    <a href="#"><i class="fa fa-image fa-fw"></i> Graphics<span class="fa arrow"></span></a>
+                                    <ul class="nav nav-third-level">
+                                    <li>
+                                        <a href="#">3D Model Loader</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Hierarchical Modeling</a>
+                                    </li>
+                                    </ul>
+                                </li>
+                                -->
+                                <!-- /.nav-third-level -->
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                        <li>
+                            <a href="contact.html"><i class="fa fa-envelope fa-fw"></i> Contact</a>
+                        </li>
+                    </ul>
+                    
+                    <!-- Social Buttons -->
+                    <div class="row show-grid">
+                        <div class="col-lg-12">
+                              <a class="btn btn-social-icon btn-linkedin" href="https://www.linkedin.com/in/chchiangnaga" target="_blank">
+                                <i class="fa fa-linkedin"></i></a>
+                              <a class="btn btn-social-icon btn-github" href="https://github.com/Cerement" target="_blank">
+                                <i class="fa fa-github"></i></a>
+                        </div>
+                    </div>
+                    
+                    <!-- Email -->
+                    <div class="text-center">
+                        <h6><i class="fa fa-envelope fa-fw"></i> chchiang.cs03g<i class="fa fa-at fa-fw"></i>g2.nctu.edu.tw</h6>
+                    </div>
+
+                </div>  
+                <!-- /.sidebar-collapse -->
+            </div>
+            <!-- /.navbar-static-side -->
+        </nav>
+
+        <!-- Page Content -->
+        <div id="page-wrapper">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1 class="page-header"><b>Forward Kinematics</b></h1>
+
+                        <div class="text-center">
+                            <iframe width="640" height="480" src="https://www.youtube.com/embed/hfiMgvOCtqc?rel=0" frameborder="0" allowfullscreen></iframe></br>
+                            <h5>Forward Kinematics - Motion A</h5>
+                        </div>
+
+                        <!-- Overview -->
+                        <h2><b>Overview</b></h2>
+                        <hr/>
+                        <p>
+                            <a href="https://en.wikipedia.org/wiki/Forward_kinematics" target="_blank">Forward kinematics</a> is the use of kinematic equations of a skeleton to derive the end-effector from the values of joints. This technique is often used in robotics and animation.
+                        </p>
+                        <p>
+                            The project used a framework developed with C++ and OpenGL by <a href="http://gpl.cs.nctu.edu.tw/" target="_blank">GPLab</a>, NCTU. In this project, it would read in the data of skeleton from ASF format and the motion data from AMC format first. Then, it could show motion A and motion B respectively. Here I implemented a simple method to interpolate these motions to generate a new sequence of motion between them.
+                        </p>
+                        </br>
+
+                        <!-- Acclaim ASF/AMC -->
+                        <h2><b>Acclaim ASF/AMC</b></h2>
+                        <hr/>
+                        <p>
+                            The <a href="http://research.cs.wisc.edu/graphics/Courses/cs-838-1999/Jeff/ASF-AMC.html" target="_blank">Acclaim format</a> is made up of two files, a skeleton file (ASF, Acclaim Skeleton File) and a motion file (AMC, Acclaim Motion Capture). Acclaim is a game company which has been researching motion capture for years. This is the format they defined for their software and also for anyone to use.
+                        </p>
+                        <p>
+                            ASF file defines the pose of skeleton at the starting point for the motion data. It seperates the whole skeleton into segments. Every segment has its own directions, length and dof (degrees of freedom). This format has some limitations, such that there is no gaps in the skeleton, and the file can only have one root.
+                        </p>
+                        <p>
+                            AMC file contains the motion data a sample at a time. Each sample indicates each segment's data, a segment per line.
+                        </p>
+                        </br>
+
+                        <!-- Forward Kinematics -->
+                        <h2><b>Forward Kinematics</b></h2>
+                        <hr/>
+                        <p>
+                            <a href="https://en.wikipedia.org/wiki/Forward_kinematics" target="_blank">Forward kinematics</a> is the use of kinematic equations of a skeleton to derive the end-effector from the values of joints. This technique is often used in robotics and animation.
+                        </p>
+                        <p>
+                            After parsing the ASF/AMC files, it would compute the positions of each segment of the skeleton for every motion frame. As the data were parsed to the tree structure, it's easy to traverse from the root to every segments until reaching the end-effectors. As the last section mentioned, with the directions and lengths of each segements (and some other properties), it could compute their global positions for rendering on the screen.
+                        </p>
+                        </br>
+
+                        <!-- Motion Slerp -->
+                        <h2><b>Motion Slerp</b></h2>
+                        <hr/>
+                        <p>
+                            There were two motions in this project, motion A and motion B, which are walking animations with the perpendicular walking directions to each other. I wanted to generate new motion data samples between these walking animations, making them into one continuous and spontaneous animation.
+                        </p>
+                        <p>
+                            Here it can't be simply applied with <a href="https://en.wikipedia.org/wiki/Linear_interpolation" target="_blank">linear interpolation</a>. For the orientions (rotations) of segements, it needs to use <a href="https://en.wikipedia.org/wiki/Slerp" target="_blank">slerp (spherical linear interpolation)</a>, which computes <a href="https://en.wikipedia.org/wiki/Quaternion" target="_blank">quaternion</a> interpolation instead.
+                        </p>
+                        <p>
+                            To generate the motion in between, it takes the last sample of motion A and the first sample of motion B to slerp 49 new samples. After concatenating these motions, the final animation would display by the order - motion A, generated motion, motion B.
+                        </p>
+                        </br>
+
+                        <!-- Results -->
+                        <h2><b>Results</b></h2>
+                        <hr/>
+                        <ul>
+                            <li>Motion A</br></br>
+                                <iframe width="640" height="480" src="https://www.youtube.com/embed/hfiMgvOCtqc?rel=0" frameborder="0" allowfullscreen></iframe>
+                            </li></br>
+                            <li>Motion B</br></br>
+                                <iframe width="640" height="480" src="https://www.youtube.com/embed/G5fqcsrlvzs?rel=0" frameborder="0" allowfullscreen></iframe>
+                            </li></br>
+                            <li>Motion A + B (Slerped)</br></br>
+                                <iframe width="640" height="480" src="https://www.youtube.com/embed/ZUpzu59V6M4?rel=0" frameborder="0" allowfullscreen></iframe>
+                            </li></br>
+                        </ul>
+                        </br>
+                    </div>
+                    <!-- /.col-lg-12 -->
+                </div>
+                <!-- /.row -->
+            </div>
+            <!-- /.container-fluid -->
+            
+            <!-- footer -->
+            <footer>
+                <script>$("footer").load("index.html footer");</script>
+            </footer>
+
+        </div>
+        <!-- /#page-wrapper -->
+    </div>
+    <!-- /#wrapper -->
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src="../bower_components/metisMenu/dist/metisMenu.min.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="../dist/js/sb-admin-2.js"></script>
+
+</body>
+
+</html>

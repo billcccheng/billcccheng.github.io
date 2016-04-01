@@ -2,23 +2,22 @@
  * jquery.flot.tooltip
  * 
  * description: easy-to-use tooltips for Flot charts
- * version: 0.8.5
+ * version: 0.8.4
  * authors: Krzysztof Urbas @krzysu [myviews.pl],Evan Steinkerchner @Roundaround
  * website: https://github.com/krzysu/flot.tooltip
  * 
- * build on 2015-05-11
+ * build on 2014-08-04
  * released under MIT License, 2012
 */ 
 (function ($) {
     // plugin options, default values
     var defaultOptions = {
-        tooltip: {
-            show: false,
-            cssClass: "flotTip",
+        tooltip: false,
+        tooltipOpts: {
+            id: "flotTip",
             content: "%s | X: %x | Y: %y",
             // allowed templates are:
             // %s -> series label,
-            // %c -> series color,
             // %lx -> x axis label (requires flot-axislabels plugin https://github.com/markrcote/flot-axislabels),
             // %ly -> y axis label (requires flot-axislabels plugin https://github.com/markrcote/flot-axislabels),
             // %x -> X value,
@@ -34,7 +33,10 @@
                 y: 20
             },
             defaultTheme: true,
-            lines: false,
+            lines: {
+                track: false,
+                threshold: 0.05
+            },
 
             // callbacks
             onHover: function (flotItem, $tooltipEl) {},
@@ -42,9 +44,6 @@
             $compat: false
         }
     };
-
-    // dummy default options object for legacy code (<0.8.5) - is deleted later
-    defaultOptions.tooltipOpts = defaultOptions.tooltip;
 
     // object
     var FlotTooltip = function (plot) {
@@ -73,18 +72,11 @@
             // get plot options
             that.plotOptions = plot.getOptions();
 
-            // for legacy (<0.8.5) implementations
-            if (typeof(that.plotOptions.tooltip) === 'boolean') {
-                that.plotOptions.tooltipOpts.show = that.plotOptions.tooltip;
-                that.plotOptions.tooltip = that.plotOptions.tooltipOpts;
-                delete that.plotOptions.tooltipOpts;
-            }
-
             // if not enabled return
-            if (that.plotOptions.tooltip.show === false || typeof that.plotOptions.tooltip.show === 'undefined') return;
+            if (that.plotOptions.tooltip === false || typeof that.plotOptions.tooltip === 'undefined') return;
 
             // shortcut to access tooltip options
-            that.tooltipOptions = that.plotOptions.tooltip;
+            that.tooltipOptions = that.plotOptions.tooltipOpts;
 
             if (that.tooltipOptions.$compat) {
                 that.wfunc = 'width';
@@ -148,11 +140,9 @@
 
             if (item) {
                 plot.showTooltip(item, pos);
-            } else if (that.plotOptions.series.lines.show && that.tooltipOptions.lines === true) {
-                var maxDistance = that.plotOptions.grid.mouseActiveRadius;
-
+            } else if (that.plotOptions.series.lines.show && that.tooltipOptions.lines.track === true) {
                 var closestTrace = {
-                    distance: maxDistance + 1
+                    distance: -1
                 };
 
                 $.each(plot.getData(), function (i, series) {
@@ -176,10 +166,9 @@
                     var pointPrev = { x: series.data[xBeforeIndex][0], y: series.data[xBeforeIndex][1] },
                         pointNext = { x: series.data[xAfterIndex][0], y: series.data[xAfterIndex][1] };
 
-                    var distToLine = dotLineLength(series.xaxis.p2c(pos.x), series.yaxis.p2c(pos.y), series.xaxis.p2c(pointPrev.x),
-                        series.yaxis.p2c(pointPrev.y), series.xaxis.p2c(pointNext.x), series.yaxis.p2c(pointNext.y), false);
+                    var distToLine = dotLineLength(pos.x, pos.y, pointPrev.x, pointPrev.y, pointNext.x, pointNext.y, false);
 
-                    if (distToLine < closestTrace.distance) {
+                    if (distToLine < that.tooltipOptions.lines.threshold) {
 
                         var closestIndex = lineDistance(pointPrev.x, pointPrev.y, pos.x, pos.y) <
                             lineDistance(pos.x, pos.y, pointNext.x, pointNext.y) ? xBeforeIndex : xAfterIndex;
@@ -199,14 +188,16 @@
                             seriesIndex: i
                         };
 
-                        closestTrace = {
-                            distance: distToLine,
-                            item: item
-                        };
+                        if (closestTrace.distance === -1 || distToLine < closestTrace.distance) {
+                            closestTrace = {
+                                distance: distToLine,
+                                item: item
+                            };
+                        }
                     }
                 });
 
-                if (closestTrace.distance < maxDistance + 1)
+                if (closestTrace.distance !== -1)
                     plot.showTooltip(closestTrace.item, pos);
                 else
                     plot.hideTooltip();
@@ -215,48 +206,46 @@
             }
         }
 
-        // Quick little function for setting the tooltip position.
-        plot.setTooltipPosition = function (pos) {
-            var $tip = that.getDomElement();
+	    // Quick little function for setting the tooltip position.
+	    plot.setTooltipPosition = function (pos) {
+	        var $tip = that.getDomElement();
 
-            var totalTipWidth = $tip.outerWidth() + that.tooltipOptions.shifts.x;
-            var totalTipHeight = $tip.outerHeight() + that.tooltipOptions.shifts.y;
-            if ((pos.x - $(window).scrollLeft()) > ($(window)[that.wfunc]() - totalTipWidth)) {
-                pos.x -= totalTipWidth;
-            }
-            if ((pos.y - $(window).scrollTop()) > ($(window)[that.hfunc]() - totalTipHeight)) {
-                pos.y -= totalTipHeight;
-            }
-            that.tipPosition.x = pos.x;
-            that.tipPosition.y = pos.y;
-        };
+	        var totalTipWidth = $tip.outerWidth() + that.tooltipOptions.shifts.x;
+	        var totalTipHeight = $tip.outerHeight() + that.tooltipOptions.shifts.y;
+	        if ((pos.x - $(window).scrollLeft()) > ($(window)[that.wfunc]() - totalTipWidth)) {
+	            pos.x -= totalTipWidth;
+	        }
+	        if ((pos.y - $(window).scrollTop()) > ($(window)[that.hfunc]() - totalTipHeight)) {
+	            pos.y -= totalTipHeight;
+	        }
+	        that.tipPosition.x = pos.x;
+	        that.tipPosition.y = pos.y;
+	    };
 
-        // Quick little function for showing the tooltip.
-        plot.showTooltip = function (target, position) {
-            var $tip = that.getDomElement();
+	    // Quick little function for showing the tooltip.
+	    plot.showTooltip = function (target, position) {
+	        var $tip = that.getDomElement();
 
-            // convert tooltip content template to real tipText
-            var tipText = that.stringFormat(that.tooltipOptions.content, target);
-            if (tipText === '')
-            	return;
+	        // convert tooltip content template to real tipText
+	        var tipText = that.stringFormat(that.tooltipOptions.content, target);
 
-            $tip.html(tipText);
-            plot.setTooltipPosition({ x: position.pageX, y: position.pageY });
-            $tip.css({
-                left: that.tipPosition.x + that.tooltipOptions.shifts.x,
-                top: that.tipPosition.y + that.tooltipOptions.shifts.y
-            }).show();
+	        $tip.html(tipText);
+	        plot.setTooltipPosition({ x: position.pageX, y: position.pageY });
+	        $tip.css({
+	            left: that.tipPosition.x + that.tooltipOptions.shifts.x,
+	            top: that.tipPosition.y + that.tooltipOptions.shifts.y
+	        }).show();
 
-            // run callback
-            if (typeof that.tooltipOptions.onHover === 'function') {
-                that.tooltipOptions.onHover(target, $tip);
-            }
-        };
+	        // run callback
+	        if (typeof that.tooltipOptions.onHover === 'function') {
+	            that.tooltipOptions.onHover(target, $tip);
+	        }
+	    };
 
-        // Quick little function for hiding the tooltip.
-        plot.hideTooltip = function () {
-            that.getDomElement().hide().html('');
-        };
+	    // Quick little function for hiding the tooltip.
+	    plot.hideTooltip = function () {
+	        that.getDomElement().hide().html('');
+	    };
     };
 
     /**
@@ -264,10 +253,10 @@
      * @return jQuery object
      */
     FlotTooltip.prototype.getDomElement = function () {
-        var $tip = $('.' + this.tooltipOptions.cssClass);
+        var $tip = $('#' + this.tooltipOptions.id);
 
         if( $tip.length === 0 ){
-            $tip = $('<div />').addClass(this.tooltipOptions.cssClass);
+            $tip = $('<div />').attr('id', this.tooltipOptions.id);
             $tip.appendTo('body').hide().css({position: 'absolute'});
 
             if(this.tooltipOptions.defaultTheme) {
@@ -297,7 +286,6 @@
 
         var percentPattern = /%p\.{0,1}(\d{0,})/;
         var seriesPattern = /%s/;
-        var colorPattern = /%c/;
         var xLabelPattern = /%lx/; // requires flot-axislabels plugin https://github.com/markrcote/flot-axislabels, will be ignored if plugin isn't loaded
         var yLabelPattern = /%ly/; // requires flot-axislabels plugin https://github.com/markrcote/flot-axislabels, will be ignored if plugin isn't loaded
         var xPattern = /%x\.{0,1}(\d{0,})/;
@@ -334,11 +322,6 @@
             content = content(item.series.label, x, y, item);
         }
 
-        // the case where the passed content is equal to false
-        if (typeof(content) === 'boolean' && !content) {
-            return '';
-        }
-
         // percent match for pie charts and stacked percent
         if (typeof (item.series.percent) !== 'undefined') {
             p = item.series.percent;
@@ -355,14 +338,6 @@
         } else {
             //remove %s if label is undefined
             content = content.replace(seriesPattern, "");
-        }
-        
-        // color match
-        if (typeof(item.series.color) !== 'undefined') {
-            content = content.replace(colorPattern, item.series.color);
-        } else {
-            //remove %s if color is undefined
-            content = content.replace(colorPattern, "");
         }
 
         // x axis label match
@@ -385,7 +360,7 @@
         if (this.isTimeMode('xaxis', item) && this.isXDateFormat(item)) {
             content = content.replace(xPattern, this.timestampToDate(x, this.tooltipOptions.xDateFormat, item.series.xaxis.options));
         }
-        if (this.isTimeMode('yaxis', item) && this.isYDateFormat(item)) {
+		if (this.isTimeMode('yaxis', item) && this.isYDateFormat(item)) {
             content = content.replace(yPattern, this.timestampToDate(y, this.tooltipOptions.yDateFormat, item.series.yaxis.options));
         }
 
@@ -411,12 +386,10 @@
             // see https://github.com/krzysu/flot.tooltip/issues/65
             var tickIndex = item.dataIndex + item.seriesIndex;
 
-            for (var index in item.series.xaxis[ticks]) {
-                if (item.series.xaxis[ticks].hasOwnProperty(tickIndex) && !this.isTimeMode('xaxis', item)) {
-                    var valueX = (this.isCategoriesMode('xaxis', item)) ? item.series.xaxis[ticks][tickIndex].label : item.series.xaxis[ticks][tickIndex].v;
-                    if (valueX === x) {
-                        content = content.replace(xPattern, item.series.xaxis[ticks][tickIndex].label);
-                    }
+            if (item.series.xaxis[ticks].length > tickIndex && !this.isTimeMode('xaxis', item)) {
+                var valueX = (this.isCategoriesMode('xaxis', item)) ? item.series.xaxis[ticks][tickIndex].label : item.series.xaxis[ticks][tickIndex].v;
+                if (valueX === x) {
+                    content = content.replace(xPattern, item.series.xaxis[ticks][tickIndex].label);
                 }
             }
         }
@@ -511,7 +484,7 @@
         init: init,
         options: defaultOptions,
         name: 'tooltip',
-        version: '0.8.5'
+        version: '0.8.4'
     });
 
 })(jQuery);

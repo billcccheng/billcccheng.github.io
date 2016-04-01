@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+    <!-- jQuery -->
+    <script src="../bower_components/jquery/dist/jquery.min.js"></script>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="A graduate student who wants to be a game programmer.">
+    <meta name="author" content="Naga Chiang">
+
+    <title>Fib2584 AI｜Cheng-Han "Naga" Chiang</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- MetisMenu CSS -->
+    <link href="../bower_components/metisMenu/dist/metisMenu.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="../dist/css/sb-admin-2.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="../bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- Social Buttons CSS -->
+    <link href="../bower_components/bootstrap-social/bootstrap-social.css" rel="stylesheet">
+
+    <!-- Icons -->
+    <!-- For IE 9 and below. ICO should be 32x32 pixels in size -->
+    <!--[if IE]><link rel="shortcut icon" href="../favicon.ico"><![endif]-->
+
+    <!-- Touch Icons - iOS and Android 2.1+ 180x180 pixels in size. --> 
+    <link rel="apple-touch-icon-precomposed" href="../favicon.ico">
+
+    <!-- Firefox, Chrome, Safari, IE 11+ and Opera. 196x196 pixels in size. -->
+    <link rel="icon" href="../favicon.ico">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+    <div id="wrapper">
+
+        <!-- Navigation -->
+        <!--
+        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+            <script>$("nav").load("index.html nav");</script>
+        </nav>
+        -->
+
+        <!-- Navigation -->
+        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                </button>
+                <b><a class="navbar-brand" href="index.html">Cheng-Han "Naga" Chiang</a></b>
+            </div>
+            <!-- /.navbar-header -->
+
+            <ul class="nav navbar-top-links navbar-right">
+
+            </ul>
+            <!-- /.navbar-top-links -->
+
+            <div class="navbar-default sidebar" role="navigation">
+                <div class="sidebar-nav navbar-collapse">
+                    <ul class="nav" id="side-menu">
+                        <li>
+                            <a href="index.html"><i class="fa fa-home fa-fw"></i> Home</a>
+                        </li>
+                        <li>
+                            <a href="about.html"><i class="fa fa-question fa-fw"></i> About</a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-cubes fa-fw"></i> Projects<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="#"><i class="fa fa-gamepad fa-fw"></i> Games<span class="fa arrow"></span></a>
+                                    <ul class="nav nav-third-level">
+                                    <li>
+                                         <a href="RobotEscaper.html">Robot Escaper</a>
+                                    </li>
+                                    <li>
+                                         <a href="PixelDungeonLegends.html">Pixel Dungeon: Legends</a>
+                                    </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="#"><i class="fa fa-users fa-fw"></i> Artificial Intelligence<span class="fa arrow"></span></a>
+                                    <ul class="nav nav-third-level">
+                                    <li>
+                                        <a href="Fib2584AI.html">Fib2584 AI</a>
+                                    </li>
+                                    <li>
+                                        <a href="Pacman.html">The Pacman Projects</a>
+                                    </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="#"><i class="fa fa-dribbble fa-fw"></i> Animation<span class="fa arrow"></span></a>
+                                    <ul class="nav nav-third-level">
+                                    <li>
+                                        <a href="SoftBodySimulation.html">Soft Body Simulation</a>
+                                    </li>
+                                    <li>
+                                        <a href="ForwardKinematics.html">Forward Kinematics</a>
+                                    </li>
+                                    <li>
+                                        <a href="InverseKinematics.html">Inverse Kinematics</a>
+                                    </li>
+                                    </ul>
+                                </li>
+                                <!--
+                                <li>
+                                    <a href="#"><i class="fa fa-image fa-fw"></i> Graphics<span class="fa arrow"></span></a>
+                                    <ul class="nav nav-third-level">
+                                    <li>
+                                        <a href="#">3D Model Loader</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Hierarchical Modeling</a>
+                                    </li>
+                                    </ul>
+                                </li>
+                                -->
+                                <!-- /.nav-third-level -->
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                        <li>
+                            <a href="contact.html"><i class="fa fa-envelope fa-fw"></i> Contact</a>
+                        </li>
+                    </ul>
+                    
+                    <!-- Social Buttons -->
+                    <div class="row show-grid">
+                        <div class="col-lg-12">
+                              <a class="btn btn-social-icon btn-linkedin" href="https://www.linkedin.com/in/chchiangnaga" target="_blank">
+                                <i class="fa fa-linkedin"></i></a>
+                              <a class="btn btn-social-icon btn-github" href="https://github.com/Cerement" target="_blank">
+                                <i class="fa fa-github"></i></a>
+                        </div>
+                    </div>
+                    
+                    <!-- Email -->
+                    <div class="text-center">
+                        <h6><i class="fa fa-envelope fa-fw"></i> chchiang.cs03g<i class="fa fa-at fa-fw"></i>g2.nctu.edu.tw</h6>
+                    </div>
+
+                </div>  
+                <!-- /.sidebar-collapse -->
+            </div>
+            <!-- /.navbar-static-side -->
+        </nav>
+
+        <!-- Page Content -->
+        <div id="page-wrapper">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1 class="page-header"><b>Fib2584 AI</b></h1>
+
+                        <div class="text-center">
+                            <img src="../images/Fib2584_0.jpg" width="50%"/></br></br>
+                            <a href="../Fib2584" class="btn btn-primary btn-lg" role="button" target="_blank">Click Here to Play</a></br></br>
+                        </div>
+
+                        <!-- Overview -->
+                        <h2><b>Overview</b></h2>
+                        <hr/>
+                        <p>
+                            <b>Fib2584</b> is a fork from the well-known <a href="http://gabrielecirulli.github.io/2048/" target="_blank">2048</a> with Fibonacci tiles instead of powers of two. It's developed with JavaScript.
+                        </p>
+                        <p>
+                            In this Fib2584, I implemented an AI which was trained about 4.3 million games with <a href="https://en.wikipedia.org/wiki/Temporal_difference_learning" target="_blank">TD Learning (Temporal Difference Learning)</a>. The main concept is training the AI how to evaluate and predict any board's value to make a suboptimal move. According to the following screenshot of C++ version, which was designed to train this AI, the training result (out of 10000 games) is:</br>
+                            <ul style="font-size:16px;">
+                                <li>Win Rate: 85.55% (win - reaching the 610 tile, which is the 14th of Fibonacci)</li>
+                                <li>Max Score: 64065</li>
+                                <li>Average Score: 20003</li>
+                                <li>Max Tile: 4181 (the 18th of Fibonacci)</li>
+                                <li>6036.83 moves/sec</li>
+                            </ul></br>
+                            <div class="text-center"><img src="../images/Fib2584_C_0.jpg" width="50%"/></br></br></div>
+                        </p> 
+                        <p>
+                            Original 2048 is created by <a href="http://gabrielecirulli.com" target="_blank">Gabriele Cirulli</a>, which is based on <a href="https://itunes.apple.com/us/app/1024!/id823499224" target="_blank">1024 by Veewo Studio</a> and conceptually similar to <a href="http://asherv.com/threes/" target="_blank">Threes by Asher Vollmer</a>.
+                        </p>
+                        </br>
+
+                        <!-- Evaluation -->
+                        <h2><b>Evaluation</b></h2>
+                        <hr/>
+                        <p>
+                            Evaluation is the process to value a certain board. To do this, I defined some features for AI to estimate.
+                        </p>
+                        <p>
+                            For the following pictures, the left one indicates the 4-tuples outside which has been marked out, and the right one is for the 4-tuples inside. There is a vast difference between outside and inside - for example, the value of a 610 tile at the corner or center are very different. That's why they can't be treated the same.
+                        </p></br>
+                        <div class="row text-center">
+                            <div class="col-lg-6"><img src="../images/Fib2584_board_4-Tuple_Outside.jpg" width="50%"/></div>
+                            <div class="col-lg-6"><img src="../images/Fib2584_board_4-Tuple_Inside.jpg" width="50%"/></div>
+                        </div></br></br>
+                        <p>
+                            Taking the next picture below for instance, we assume the AI is evaluating this board. First, we evaluate the 4-tuples outside (red). There are 2 non-zero 4-tuples outside, which are [0, 0, 2, 0] and [0, 1, 0, 0] (0 is for empty tile). Then, the non-zero 4-tuples inside are [2, 0, 0, 0] and [0, 0, 0, 1] (blue). And rest of 4-tuples are [0, 0, 0, 0] for both outside and inside. Now we can look up these 4-tuples' values in trained database (would be explained later) for outside and inside respectively, including the all-zero 4-tuples. Finally, the evaluation would be the sum of the above values.
+                        </p></br>
+                        <div class="text-center"><img src="../images/Fib2584_board_Example.jpg" width="40%"/></br></br></div>
+                        <p>
+                            To pick up the best action to move, the AI would generate the next board for each possible action without new random tile popping out yet, and evaluate these board (may be 4 or less) to compare their values.
+                        </p>
+                        <p>
+                            Please notice: for the convenience of explanation, here I just ignored the equivalence from symmetry for now. [0, 1, 2, 3] and [3, 2, 1, 0] should be both evaluated and their values would be the same theoretically.
+                        </p>
+                        </br>
+
+                        <!-- TD Learning -->
+                        <h2><b>TD Learning</b></h2>
+                        <hr/>
+                        <p>
+                            To evaluate, we have to train the database by <a href="https://en.wikipedia.org/wiki/Temporal_difference_learning" target="_blank">TD Learning</a> first.
+                        </p>
+                        <p>
+                            At the beginning, all values for 4-tuples are initialized as zero. Assuming that there are optimal values for each 4-tuple, the goal would be let AI adjusts itself to these optimal values in the end. Here we used the update function of TD-Afterstate below.
+                        </p>
+                        <div class="text-center" style="font-size:20px"><b>Value(state') ← Value(state') + α[Reward<sub>next</sub> + Value(state'<sub>next</sub>) - Value(state')]</b></div></br>
+                        <p>
+                            With <b>Value()</b> indicates the value of a certain state (aka board or position); <b>state</b> is the current board, <b>state'</b> is the board after performing the best move, and <b>state'<sub>next</sub></b> is the board after performing the best move to the next board; <b>Reward</b> is the score got by the moves which could combining some tiles, while <b>Reward<sub>next</sub></b> is the score got from moving the next board; <b>α</b> is the learning rate less than 1, which sets the adjusting speed of values towards the optimal values.
+                        </p>
+                        <p>
+                            Only the 4-tuples used would be updated with this function. The <b>Reward</b> is kind of like a critic in this machine learning system, which provided the standard of score in the Fib2584, so the AI could adjust the values depending on it. In addition, the <b>Value(state'<sub>next</sub>)</b> could be considered as a result of current move; therefore, <b>[Reward<sub>next</sub> + Value(state'<sub>next</sub>) - Value(state')]</b> would be the error value to the optimal value. By playing lots of times, the AI would eventually know how to play this game well by itself.
+                        </p>
+                        </br>
+
+                        <!-- Reference -->
+                        <h2><b>Reference</b></h2>
+                        <hr/>
+                        <ul style="font-size:16px;"> 
+                            <li><a href="http://www.cs.put.poznan.pl/mszubert/pub/szubert2014cig.pdf" target="_blank">Temporal Difference Learning of N-Tuple Networks for the Game 2048 (Szubert &amp; Jaskowsk, CIG 2014)</a></li>
+                        </ul>
+                        </br>
+
+                    </div>
+                    <!-- /.col-lg-12 -->
+                </div>
+                <!-- /.row -->
+            </div>
+            <!-- /.container-fluid -->
+            
+            <!-- footer -->
+            <footer>
+                <script>$("footer").load("index.html footer");</script>
+            </footer>
+
+        </div>
+        <!-- /#page-wrapper -->
+    </div>
+    <!-- /#wrapper -->
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src="../bower_components/metisMenu/dist/metisMenu.min.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="../dist/js/sb-admin-2.js"></script>
+
+</body>
+
+</html>
