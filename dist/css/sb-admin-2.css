@@ -4,9 +4,6 @@
  * For details, see http://www.apache.org/licenses/LICENSE-2.0.
  */
 
- /* Google Fonts */
- @import url(//fonts.googleapis.com/css?family=Open+Sans);
-
 body {
     background-color: #f8f8f8;
 }
@@ -354,25 +351,4 @@ table.dataTable thead .sorting:after {
 
 .panel-yellow a:hover {
     color: #df8a13;
-}
-
-
-
-/* Custom */
-
-* {
-    font-family: 'Open Sans', sans-serif;
-}
-
-p {
-    font-size: 16px;
-    text-indent: 3em;
-}
-
-.sidebar li {
-    font-size: 16px;
-}
-
-ul {
-    font-size: 16px;
 }
