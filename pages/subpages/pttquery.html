@@ -26,7 +26,6 @@
         var query = $("#query").val();
         var content_or_title = $( "#selection option:selected" ).text();
         for(i = 0; i < data.length; i++){
-            console.log(data[i]);
             if(data[i][content_or_title].search(query) != -1){
                 var j = i + 1;
                 $('#results').append('<br><div>' + '' + j + ': '+ data[i].標題 + "<br><a href="+ data[i].link +'>Link</a></div>');
@@ -36,7 +35,6 @@
     
     function get_data(){
         $.getJSON("data.json", function(json) {
-            console.log("test");
             load_view(json);
         });
     }
