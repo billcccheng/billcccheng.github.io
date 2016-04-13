@@ -18,7 +18,7 @@
         <button id="search">Search</button>
         <br></br>
         <div id="load"></div>
-        <progress id="progBar" value="0" max="100"></progress>
+        <!-- <progress id="progBar" value="0" max="100"></progress> -->
         <div id="results"></div>
     <script type="text/javascript"  charset = UTF-8>
   
@@ -40,7 +40,7 @@
     function get_data(){
         $("#load").text("Loading...");
         blink(true);
-        $("#progBar").show();
+        // $("#progBar").show();
         // $.getJSON("https://api.myjson.com/bins/yhp0", function(json) {
         //     load_view(json);
         // });
@@ -77,7 +77,7 @@
     }
 
     function on_ready(){
-        $("#progBar").hide();
+        // $("#progBar").hide();
         $('#search').click(function(){
             $( "#results" ).empty();
             get_data();
