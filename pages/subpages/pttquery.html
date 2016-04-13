@@ -8,7 +8,7 @@
 
 </head>
     <body>
-    <h3>Welcome to PTT Studyabroad Search</h3>
+    <h3>Welcome to PTT Studyabroad Search (Last Update: 04/12/2016)</h3>
     <h5>搜尋耗時較久 請耐心等候 絕對不是當掉!!!</h5>
         關鍵字: <input id="query"/> 
 
@@ -23,90 +23,46 @@
         <div id="results"></div>
     <script type="text/javascript"  charset = UTF-8>
   
+    var j = 0;
+    var now = 0;
 
     function load_view(data){
         var query = $("#query").val();
         var content_or_title = $( "#selection option:selected" ).text();
+        
         for(i = 0; i < data.length; i++){
             if(data[i][content_or_title].search(query) != -1){
-                var j = i + 1;
+                j++;
                 $('#results').append('<br><div>' + '' + j + ': '+ data[i].標題 + "<br><a href="+ data[i].link +'>Link</a></div>');
             }       
         }
         $("#load").text("Finished");
         blink(false);
-
+        console.log(now-(new Date).getTime());
     }
-   
+    
     function get_data(){
         $("#load").text("Loading...");
         blink(true);
         // $("#progBar").show();
-        // $.getJSON("https://api.myjson.com/bins/yhp0", function(json) {
-        //     load_view(json);
-        // });
-        $.ajax({
-          xhr: function()
-          {
-            var xhr = new window.XMLHttpRequest();
-            //Upload progress
-            xhr.upload.addEventListener("progress", function(evt){
-              if (evt.lengthComputable) {
-                var percentComplete = evt.loaded / evt.total;
-                //Do something with upload progress
-                console.log(percentComplete);
-              }
-            }, false);
-            //Download progress
-            xhr.addEventListener("progress", function(evt){
-              if (evt.lengthComputable) {
-                var percentComplete = evt.loaded / evt.total;
-                //Do something with download progress
-                console.log(percentComplete);
-                $("#progBar").val(percentComplete*100);
-              }
-            }, false);
-            return xhr;
-          },
-          type: 'GET',
-           // testing url = https://api.myjson.com/bins/yhp0
-          url: "data1.json",
-          data: {},
-          success: function(data){
-            load_view(data)
-          }
+        now = (new Date).getTime();
+        $.getJSON("https://raw.githubusercontent.com/billcccheng/ptt-crawler-indexer/master/data/data1.json", function(json) {
+            load_view(json);
         });
-
-        $.ajax({
-          xhr: function()
-          {
-            var xhr = new window.XMLHttpRequest();
-            //Upload progress
-            xhr.upload.addEventListener("progress", function(evt){
-              if (evt.lengthComputable) {
-                var percentComplete = evt.loaded / evt.total;
-                //Do something with upload progress
-                console.log(percentComplete);
-              }
-            }, false);
-            //Download progress
-            xhr.addEventListener("progress", function(evt){
-              if (evt.lengthComputable) {
-                var percentComplete = evt.loaded / evt.total;
-                //Do something with download progress
-                console.log(percentComplete);
-                $("#progBar").val(percentComplete*100);
-              }
-            }, false);
-            return xhr;
-          },
-          type: 'GET',
-           // testing url = https://api.myjson.com/bins/yhp0
-          url: "data2.json",
-          data: {},
-          success: function(data){
-            load_view(data)
-          }
+        $.getJSON("https://raw.githubusercontent.com/billcccheng/ptt-crawler-indexer/master/data/data2.json", function(json) {
+            load_view(json);
+        });
+        $.getJSON("https://raw.githubusercontent.com/billcccheng/ptt-crawler-indexer/master/data/data3.json", function(json) {
+            load_view(json);
+        });
+        $.getJSON("https://raw.githubusercontent.com/billcccheng/ptt-crawler-indexer/master/data/data4.json", function(json) {
+            load_view(json);
+        });
+        $.getJSON("https://raw.githubusercontent.com/billcccheng/ptt-crawler-indexer/master/data/data5.json", function(json) {
+            load_view(json);
+        });
+        $.getJSON("https://raw.githubusercontent.com/billcccheng/ptt-crawler-indexer/master/data/data6.json", function(json) {
+            load_view(json);
         });
     }
 
@@ -141,6 +97,39 @@
 
     $(document).ready(on_ready);
 
+
+     // $.ajax({
+        //   xhr: function()
+        //   {
+        //     var xhr = new window.XMLHttpRequest();
+        //     //Upload progress
+        //     xhr.upload.addEventListener("progress", function(evt){
+        //       if (evt.lengthComputable) {
+        //         var percentComplete = evt.loaded / evt.total;
+        //         //Do something with upload progress
+        //         console.log(percentComplete);
+        //       }
+        //     }, false);
+        //     //Download progress
+        //     xhr.addEventListener("progress", function(evt){
+        //       if (evt.lengthComputable) {
+        //         var percentComplete = evt.loaded / evt.total;
+        //         //Do something with download progress
+        //         console.log(percentComplete);
+        //         $("#progBar").val(percentComplete*100);
+        //       }
+        //     }, false);
+        //     return xhr;
+        //   },
+        //   type: 'GET',
+        //    // testing url = https://api.myjson.com/bins/yhp0
+        //   url: "https://raw.githubusercontent.com/billcccheng/ptt-crawler-indexer/master/data/data1.json",
+        //   data: {},
+        //   success: function(data){
+        //     load_view(data)
+        //   }
+        // });
+    
 
     </script>
     </body>
