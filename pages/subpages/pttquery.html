@@ -61,7 +61,7 @@
               if (evt.lengthComputable) {
                 var percentComplete = evt.loaded / evt.total;
                 //Do something with download progress
-                // console.log(percentComplete);
+                console.log(percentComplete);
                 $("#progBar").val(percentComplete*100);
               }
             }, false);
