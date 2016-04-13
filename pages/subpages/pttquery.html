@@ -38,14 +38,14 @@
         }
         $("#load").text("Finished");
         blink(false);
-        console.log(now-(new Date).getTime());
+        // console.log(now-(new Date).getTime());
     }
     
     function get_data(){
         $("#load").text("Loading...");
         blink(true);
         // $("#progBar").show();
-        now = (new Date).getTime();
+        // now = (new Date).getTime();
         $.getJSON("https://raw.githubusercontent.com/billcccheng/ptt-crawler-indexer/master/data/data1.json", function(json) {
             load_view(json);
         });
@@ -69,16 +69,18 @@
     function on_ready(){
         // $("#progBar").hide();
         $('#search').click(function(){
+            j = 0
             $( "#results" ).empty();
             get_data();
           });
 
         $('body').keypress(function(e) {
-          if (e.keyCode == '13') {
-            $( "#results" ).empty();
-            get_data();
-          }
-      });
+            j = 0
+            if (e.keyCode == '13') {
+                $( "#results" ).empty();
+                get_data();
+            }
+        });
     }
 
     var blink_elements = [];
