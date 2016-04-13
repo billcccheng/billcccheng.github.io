@@ -24,7 +24,6 @@
     <script type="text/javascript"  charset = UTF-8>
   
     var j = 0;
-    var now = 0;
 
     function load_view(data){
         var query = $("#query").val();
@@ -36,8 +35,7 @@
                 $('#results').append('<br><div>' + '' + j + ': '+ data[i].標題 + "<br><a href="+ data[i].link +'>Link</a></div>');
             }       
         }
-        $("#load").text("Finished");
-        blink(false);
+        $("#load").hide();
         // console.log(now-(new Date).getTime());
     }
     
@@ -83,18 +81,11 @@
         });
     }
 
-    var blink_elements = [];
     function blink(turn_blink_on){
-        if(turn_blink_on){
-            var t = setInterval(function () {
-                var ele = document.getElementById('load');
-                ele.style.visibility = (ele.style.visibility == 'hidden' ? '' : 'hidden');
-            }, 500);
-            blink_elements.push(t);
-        }else{
-            t = blink_elements.pop();
-            clearInterval(t);
-        }
+        var t = setInterval(function () {
+            var ele = document.getElementById('load');
+            ele.style.visibility = (ele.style.visibility == 'hidden' ? '' : 'hidden');
+        }, 500);
     }
 
     $(document).ready(on_ready);
