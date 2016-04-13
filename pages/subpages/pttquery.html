@@ -17,6 +17,7 @@
         </select>
         <button id="search">Search</button>
         <br></br>
+        <div id="load"></div>
         <div id="results"></div>
 
     <script type="text/javascript"  charset = UTF-8>
@@ -31,9 +32,14 @@
                 $('#results').append('<br><div>' + '' + j + ': '+ data[i].標題 + "<br><a href="+ data[i].link +'>Link</a></div>');
             }       
         }
+        $("#load").text("Finished");
+        blink(false);
+
     }
-    
+    // testing url = https://api.myjson.com/bins/yhp0
     function get_data(){
+        $("#load").text("Loading...");
+        blink(true);
         $.getJSON("data.json", function(json) {
             load_view(json);
         });
@@ -52,6 +58,21 @@
           }
       });
     }
+
+    var blink_elements = [];
+    function blink(turn_blink_on){
+        if(turn_blink_on){
+            var t = setInterval(function () {
+                var ele = document.getElementById('load');
+                ele.style.visibility = (ele.style.visibility == 'hidden' ? '' : 'hidden');
+            }, 500);
+            blink_elements.push(t);
+        }else{
+            t = blink_elements.pop();
+            clearInterval(t);
+        }
+    }
+
     $(document).ready(on_ready);
 
 
