@@ -3,7 +3,7 @@
 <head>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.15.1/vis.min.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.15.1/vis.min.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
 <title>Study Abroad Crawler</title>
 
 </head>
@@ -19,6 +19,7 @@
         <button id="search">Search</button>
         <br></br>
         <div id="load"></div>
+        <i class="fa fa-spinner fa-pulse fa-2x fa-fw margin-bottom" id="loading"></i>
         <!-- <progress id="progBar" value="0" max="100"></progress> -->
         <div id="results"></div>
     <script type="text/javascript"  charset = UTF-8>
@@ -35,15 +36,16 @@
                 $('#results').append('<br><div>' + '' + j + ': '+ data[i].標題 + "<br><a href="+ data[i].link +'>Link</a></div>');
             }       
         }
-        $("#load").hide();
+        
         // console.log(now-(new Date).getTime());
     }
     
     function get_data(){
-        $("#load").text("Loading...");
-        blink(true);
+        // $("#load").text("Loading...");
+        // blink(true);
         // $("#progBar").show();
         // now = (new Date).getTime();
+        $("#loading").show();
         $.getJSON("https://raw.githubusercontent.com/billcccheng/ptt-crawler-indexer/master/data/data1.json", function(json) {
             load_view(json);
         });
@@ -61,11 +63,12 @@
         });
         $.getJSON("https://raw.githubusercontent.com/billcccheng/ptt-crawler-indexer/master/data/data6.json", function(json) {
             load_view(json);
+            $("#loading").hide();
         });
     }
 
     function on_ready(){
-        // $("#progBar").hide();
+         $("#loading").hide();
         $('#search').click(function(){
             j = 0
             $( "#results" ).empty();
@@ -81,12 +84,12 @@
         });
     }
 
-    function blink(turn_blink_on){
-        var t = setInterval(function () {
-            var ele = document.getElementById('load');
-            ele.style.visibility = (ele.style.visibility == 'hidden' ? '' : 'hidden');
-        }, 500);
-    }
+    // function blink(turn_blink_on){
+    //     var t = setInterval(function () {
+    //         var ele = document.getElementById('load');
+    //         ele.style.visibility = (ele.style.visibility == 'hidden' ? '' : 'hidden');
+    //     }, 500);
+    // }
 
     $(document).ready(on_ready);
 
