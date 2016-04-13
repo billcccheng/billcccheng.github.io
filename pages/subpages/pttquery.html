@@ -18,8 +18,8 @@
         <button id="search">Search</button>
         <br></br>
         <div id="load"></div>
+        <progress id="progBar" value="0" max="100"></progress>
         <div id="results"></div>
-
     <script type="text/javascript"  charset = UTF-8>
   
 
@@ -40,12 +40,44 @@
     function get_data(){
         $("#load").text("Loading...");
         blink(true);
-        $.getJSON("data.json", function(json) {
-            load_view(json);
+        $("#progBar").show();
+        // $.getJSON("https://api.myjson.com/bins/yhp0", function(json) {
+        //     load_view(json);
+        // });
+        $.ajax({
+          xhr: function()
+          {
+            var xhr = new window.XMLHttpRequest();
+            //Upload progress
+            xhr.upload.addEventListener("progress", function(evt){
+              if (evt.lengthComputable) {
+                var percentComplete = evt.loaded / evt.total;
+                //Do something with upload progress
+                console.log(percentComplete);
+              }
+            }, false);
+            //Download progress
+            xhr.addEventListener("progress", function(evt){
+              if (evt.lengthComputable) {
+                var percentComplete = evt.loaded / evt.total;
+                //Do something with download progress
+                // console.log(percentComplete);
+                $("#progBar").val(percentComplete*100);
+              }
+            }, false);
+            return xhr;
+          },
+          type: 'GET',
+          url: "data.json",
+          data: {},
+          success: function(data){
+            load_view(data)
+          }
         });
     }
 
     function on_ready(){
+        $("#progBar").hide();
         $('#search').click(function(){
             $( "#results" ).empty();
             get_data();
