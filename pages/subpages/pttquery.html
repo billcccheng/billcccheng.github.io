@@ -9,7 +9,7 @@
 </head>
     <body>
     <h3>Welcome to PTT Studyabroad Search</h3>
-    <h5>搜尋耗時較久 請耐心等候</h5>
+    <h5>搜尋耗時較久 請耐心等候 絕對不是當掉!!!</h5>
         關鍵字: <input id="query"/> 
 
         <select id="selection">
@@ -37,7 +37,7 @@
         blink(false);
 
     }
-    // testing url = https://api.myjson.com/bins/yhp0
+   
     function get_data(){
         $("#load").text("Loading...");
         blink(true);
@@ -69,7 +69,40 @@
             return xhr;
           },
           type: 'GET',
-          url: "data.json",
+           // testing url = https://api.myjson.com/bins/yhp0
+          url: "data1.json",
+          data: {},
+          success: function(data){
+            load_view(data)
+          }
+        });
+
+        $.ajax({
+          xhr: function()
+          {
+            var xhr = new window.XMLHttpRequest();
+            //Upload progress
+            xhr.upload.addEventListener("progress", function(evt){
+              if (evt.lengthComputable) {
+                var percentComplete = evt.loaded / evt.total;
+                //Do something with upload progress
+                console.log(percentComplete);
+              }
+            }, false);
+            //Download progress
+            xhr.addEventListener("progress", function(evt){
+              if (evt.lengthComputable) {
+                var percentComplete = evt.loaded / evt.total;
+                //Do something with download progress
+                console.log(percentComplete);
+                $("#progBar").val(percentComplete*100);
+              }
+            }, false);
+            return xhr;
+          },
+          type: 'GET',
+           // testing url = https://api.myjson.com/bins/yhp0
+          url: "data2.json",
           data: {},
           success: function(data){
             load_view(data)
