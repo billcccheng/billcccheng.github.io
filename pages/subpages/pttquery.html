@@ -25,9 +25,8 @@
         <br></br>
         <div id="load"></div>
         <i class="fa fa-spinner fa-pulse fa-2x fa-fw margin-bottom" id="loading"></i>
-        <!-- <progress id="progBar" value="0" max="100"></progress> -->
         <div id="results"></div>
-    <script type="text/javascript"  charset = UTF-8>
+    <script type="text/javascript">
   
     var j = 0;
 
@@ -41,35 +40,24 @@
                 $('#results').append('<br><div>' + '' + j + ': '+ data[i].標題 + "<br><a href="+ data[i].link +'>Link</a></div>');
             }       
         }
-        
-        // console.log(now-(new Date).getTime());
     }
     
     function get_data(){
-        // $("#load").text("Loading...");
-        // blink(true);
-        // $("#progBar").show();
-        // now = (new Date).getTime();
         $("#loading").show();
-        $.getJSON("https://raw.githubusercontent.com/billcccheng/ptt-crawler-indexer/master/data/data1.json", function(json) {
-            load_view(json);
-        });
-        $.getJSON("https://raw.githubusercontent.com/billcccheng/ptt-crawler-indexer/master/data/data2.json", function(json) {
-            load_view(json);
-        });
-        $.getJSON("https://raw.githubusercontent.com/billcccheng/ptt-crawler-indexer/master/data/data3.json", function(json) {
-            load_view(json);
-        });
-        $.getJSON("https://raw.githubusercontent.com/billcccheng/ptt-crawler-indexer/master/data/data4.json", function(json) {
-            load_view(json);
-        });
-        $.getJSON("https://raw.githubusercontent.com/billcccheng/ptt-crawler-indexer/master/data/data5.json", function(json) {
-            load_view(json);
-        });
-        $.getJSON("https://raw.githubusercontent.com/billcccheng/ptt-crawler-indexer/master/data/data6.json", function(json) {
-            load_view(json);
-            $("#loading").hide();
-        });
+        for(i = 0; i < 6; i++){
+            var j = i + 1;
+            var url = "https://raw.githubusercontent.com/billcccheng/ptt-crawler-indexer/master/data/data"+ j +".json"
+            if(j != 6){
+                $.getJSON(url, function(json) {
+                    load_view(json);
+                });
+            }else {
+                $.getJSON(url, function(json) {
+                    $("#loading").hide();
+                    load_view(json);
+                });
+            }
+        }
     }
 
     function on_ready(){
@@ -88,50 +76,7 @@
             }
         });
     }
-
-    // function blink(turn_blink_on){
-    //     var t = setInterval(function () {
-    //         var ele = document.getElementById('load');
-    //         ele.style.visibility = (ele.style.visibility == 'hidden' ? '' : 'hidden');
-    //     }, 500);
-    // }
-
     $(document).ready(on_ready);
-
-
-     // $.ajax({
-        //   xhr: function()
-        //   {
-        //     var xhr = new window.XMLHttpRequest();
-        //     //Upload progress
-        //     xhr.upload.addEventListener("progress", function(evt){
-        //       if (evt.lengthComputable) {
-        //         var percentComplete = evt.loaded / evt.total;
-        //         //Do something with upload progress
-        //         console.log(percentComplete);
-        //       }
-        //     }, false);
-        //     //Download progress
-        //     xhr.addEventListener("progress", function(evt){
-        //       if (evt.lengthComputable) {
-        //         var percentComplete = evt.loaded / evt.total;
-        //         //Do something with download progress
-        //         console.log(percentComplete);
-        //         $("#progBar").val(percentComplete*100);
-        //       }
-        //     }, false);
-        //     return xhr;
-        //   },
-        //   type: 'GET',
-        //    // testing url = https://api.myjson.com/bins/yhp0
-        //   url: "https://raw.githubusercontent.com/billcccheng/ptt-crawler-indexer/master/data/data1.json",
-        //   data: {},
-        //   success: function(data){
-        //     load_view(data)
-        //   }
-        // });
-    
-
     </script>
     </body>
 </html>
