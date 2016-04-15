@@ -10,36 +10,68 @@
 </head>
     <body background="http://www.designbolts.com/wp-content/uploads/2013/02/Free-Seamless-Wood-Textures-Patterns-For-3D-Mapping-2.jpg">
     <h1>Welcome to PTT Studyabroad Search</h1> <h3>By Bill Cheng(billcccheng@gmail.com) Last Update: 04/12/2016</h3>
-    <!-- Start: Copyright 2016 TraceMyIP.org Service Code (163008-04132016)- DO NOT MODIFY //-->
-    <div style="line-height:16px;"><script type="text/javascript" src="http://s3.tracemyip.org/tracker/lgUrl.php?stlVar2=1300&amp;rgtype=4684NR-IPIB&amp;pidnVar2=34505&amp;prtVar2=8&amp;scvVar2=12"></script><noscript><a href="http://www.tracemyip.org/tools/online-address-book-web-contact-list/"><img src="http://s3.tracemyip.org/tracker/1300/4684NR-IPIB/34505/8/12/ans/" alt="address book freeware" style="border:0px;"></a></noscript>
-    </div>
-    <!-- End: TraceMyIP.org Service Code //-->
+    <h5 style="LINE-HEIGHT:0px">增加功能:</h5>
+        <ul style="LINE-HEIGHT:15px">
+            <li> Case Insensitive </li>
+            <li> Boolean Search ("關鍵字" AND "關鍵字")</li>
+        </ul>
     <h5>搜尋可能耗時較久 請耐心等候</h5>
-        關鍵字: <input id="query"/> 
-
-        <select id="selection">
-            <option value="title">標題</option>
-            <option value="content">內文</option>
-        </select>
-        <button id="search">Search</button>
-        <br></br>
-        <div id="load"></div>
-        <i class="fa fa-spinner fa-pulse fa-2x fa-fw margin-bottom" id="loading"></i>
-        <div id="results"></div>
+        <p>關鍵字:</p>
+        <button id="add-search"> 增加關鍵字 </button>
+        <p>
+            <div id="search-query">
+                <input style="width: 200px " id="query_1"/> 
+            </div>
+        </p>
+        <p>
+            <select id="selection">
+                <option value="title">標題</option>
+                <option value="content">內文</option>
+            </select>
+            <button id="search" >Search</button>
+        </p>
+        
+        <p>
+            <div id="load"></div>
+            <i class="fa fa-spinner fa-pulse fa-2x fa-fw margin-bottom" id="loading"></i>
+            <div id="results"></div>
+        </p>
     <script type="text/javascript">
-  
-    var j = 0;
+    var query = 1
+    $("#add-search").click(function(){
+        query++;
+        $('#search-query').append('<p><input style="width: 200px " id="query_'+ query +'"/></p>');
+    });
 
+
+
+    var id = 0;
     function load_view(data){
         var query = $("#query").val();
+        for(i = 0; i < $('#search-query').children().length; i++){
+            // var index = i+1;
+            var query_id = "#query_"+(i+1).toString();
+            // console.log($(query_id).val());
+        }
+        
         var content_or_title = $( "#selection option:selected" ).text();
         query = new RegExp(query, "i")
         for(i = 0; i < data.length; i++){
-            if(data[i][content_or_title].match(query)){
-                j++;
-                $('#results').append('<br><div>' + '' + j + ': '+ data[i].標題 + "<br><a href="+ data[i].link +'>Link</a></div>');
+            var isTrue = true;
+            for(j = 0; j < $('#search-query').children().length; j++){
+                var query_id = "#query_"+(j+1).toString();
+                query = $(query_id).val();
+                query = new RegExp(query, "i");
+                isTrue = isTrue && (data[i][content_or_title].match(query) != null);
+            }
+            // console.log(isTrue);
+
+            if(isTrue){
+                id++;
+                $('#results').append('<br><div>' + '' + id + ': '+ data[i].標題 + "<br><a href="+ data[i].link +'>Link</a></div>');
             }       
         }
+        console.log(isTrue);
     }
     
     function get_data(){
@@ -59,17 +91,15 @@
             }
         }
     }
-
     function on_ready(){
          $("#loading").hide();
         $('#search').click(function(){
-            j = 0
+            id = 0
             $( "#results" ).empty();
             get_data();
           });
-
         $('body').keypress(function(e) {
-            j = 0
+            id = 0
             if (e.keyCode == '13') {
                 $( "#results" ).empty();
                 get_data();
