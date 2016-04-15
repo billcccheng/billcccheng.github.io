@@ -33,9 +33,9 @@
     function load_view(data){
         var query = $("#query").val();
         var content_or_title = $( "#selection option:selected" ).text();
-        
+        query = new RegExp(query, "i")
         for(i = 0; i < data.length; i++){
-            if(data[i][content_or_title].search(query) != -1){
+            if(data[i][content_or_title].match(query)){
                 j++;
                 $('#results').append('<br><div>' + '' + j + ': '+ data[i].標題 + "<br><a href="+ data[i].link +'>Link</a></div>');
             }       
