@@ -9,7 +9,7 @@
 
 </head>
     <body background="http://www.designbolts.com/wp-content/uploads/2013/02/Free-Seamless-Wood-Textures-Patterns-For-3D-Mapping-2.jpg">
-    <h1>Welcome to PTT Studyabroad Search</h1> <h3>By Bill Cheng(billcccheng@gmail.com) Last Update: 04/12/2016</h3>
+    <h1>Welcome to PTT Studyabroad Search</h1> <h3>By Bill Cheng(billcccheng@gmail.com) Last Update: 04/15/2016</h3>
     <!-- Start: Copyright 2016 TraceMyIP.org Service Code (163008-04132016)- DO NOT MODIFY //-->
     <div style="line-height:16px;"><script type="text/javascript" src="http://s3.tracemyip.org/tracker/lgUrl.php?stlVar2=1300&amp;rgtype=4684NR-IPIB&amp;pidnVar2=34505&amp;prtVar2=8&amp;scvVar2=12"></script><noscript><a href="http://www.tracemyip.org/tools/online-address-book-web-contact-list/"><img src="http://s3.tracemyip.org/tracker/1300/4684NR-IPIB/34505/8/12/ans/" alt="address book freeware" style="border:0px;"></a></noscript>
     </div>
@@ -18,14 +18,15 @@
         <ul style="LINE-HEIGHT:15px">
             <li> Case Insensitive </li>
             <li> Boolean Search </li>
+            <li> Can track all documents in study abroad as of 4/15/2016 </li>
         </ul>
     <h5>搜尋可能耗時較久 請耐心等候</h5>
         <p>關鍵字:</p>
-        <button id="add-search"> 增加關鍵字 </button>
         <p>
             <div id="search-query">
                 <input style="width: 200px " id="query_1"/> 
             </div>
+            <p><button id="add-search"> 增加關鍵字 </button></p>
         </p>
         <p>
             <select id="selection">
@@ -55,7 +56,7 @@
         for(i = 0; i < $('#search-query').children().length; i++){
             // var index = i+1;
             var query_id = "#query_"+(i+1).toString();
-            // console.log($(query_id).val());
+            console.log($(query_id).val());
         }
         
         var content_or_title = $( "#selection option:selected" ).text();
@@ -75,15 +76,14 @@
                 $('#results').append('<p>' + '' + id + ': '+ data[i].標題 + " <a href="+ data[i].link +'>Link</a></p>');
             }       
         }
-        console.log(isTrue);
+        // console.log(isTrue);
     }
     
     function get_data(){
         $("#loading").show();
-        for(i = 0; i < 6; i++){
-            var j = i + 1;
-            var url = "https://raw.githubusercontent.com/billcccheng/ptt-crawler-indexer/master/data/data"+ j +".json"
-            if(j != 6){
+        for(i = 0; i < 10; i++){
+            var url = "https://raw.githubusercontent.com/billcccheng/ptt-crawler-indexer/threading/data/data-"+ i +".json"
+            if(i != 9){
                 $.getJSON(url, function(json) {
                     load_view(json);
                 });
