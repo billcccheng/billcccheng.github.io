@@ -9,7 +9,7 @@
 
 </head>
     <body background="http://www.designbolts.com/wp-content/uploads/2013/02/Free-Seamless-Wood-Textures-Patterns-For-3D-Mapping-2.jpg">
-    <h1>Welcome to PTT Studyabroad Search</h1> <h3>By Bill Cheng(billcccheng@gmail.com) Last Update: 12.5.2016</h3>
+    <h1>Welcome to PTT Studyabroad Search</h1> <h3>By Bill Cheng(billcccheng@gmail.com) Last Update: 12/12/2016</h3>
     <!-- Start: Copyright 2016 TraceMyIP.org Service Code (163008-04132016)- DO NOT MODIFY //-->
     <div style="line-height:16px;"><script type="text/javascript" src="http://s3.tracemyip.org/tracker/lgUrl.php?stlVar2=1300&amp;rgtype=4684NR-IPIB&amp;pidnVar2=34505&amp;prtVar2=8&amp;scvVar2=12"></script><noscript><a href="http://www.tracemyip.org/tools/online-address-book-web-contact-list/"><img src="http://s3.tracemyip.org/tracker/1300/4684NR-IPIB/34505/8/12/ans/" alt="address book freeware" style="border:0px;"></a></noscript>
     </div>
@@ -19,7 +19,8 @@
             <li> Case Insensitive </li>
             <li> Boolean Search </li>
             <li> Can track all documents in study abroad as of 12/5/2016 </li>
-            <li> Updates will be done every 6 month </li>
+            <li> Updates will be done every 6 months </li>
+            <li> Will search for 標題 and 內文 simultaneously </li>
         </ul>
     <h5>搜尋可能耗時較久 請耐心等候</h5>
         <p>關鍵字:</p>
@@ -30,10 +31,6 @@
             <p><button id="add-search"> 增加關鍵字 </button></p>
         </p>
         <p>
-            <select id="selection">
-                <option value="title">標題</option>
-                <option value="content">內文</option>
-            </select>
             <button id="search" >Search</button>
         </p>
         
@@ -53,14 +50,12 @@
 
     var id = 0;
     function load_view(data){
+        $("#loading").hide();
         var query = $("#query").val();
         for(i = 0; i < $('#search-query').children().length; i++){
-            // var index = i+1;
             var query_id = "#query_"+(i+1).toString();
-            console.log($(query_id).val());
         }
         
-        var content_or_title = $( "#selection option:selected" ).text();
         query = new RegExp(query, "i")
         for(i = 0; i < data.length; i++){
             var isTrue = true;
@@ -68,32 +63,23 @@
                 var query_id = "#query_"+(j+1).toString();
                 query = $(query_id).val();
                 query = new RegExp(query, "i");
-                isTrue = isTrue && (data[i][content_or_title].match(query) != null);
+                isTrue = isTrue && (data[i]["內文"].match(query) != null || data[i]["標題"].match(query) != null || data[i]["推文"].match(query) != null);
             }
-            // console.log(isTrue);
 
             if(isTrue){
                 id++;
                 $('#results').append('<p>' + '' + id + ': '+ data[i].標題 + " <a href="+ data[i].link +'>Link</a></p>');
             }       
         }
-        // console.log(isTrue);
     }
     
     function get_data(){
         $("#loading").show();
-        for(i = 0; i < 10; i++){
+        for(i = 0; i < 60; i++){
             var url = "https://raw.githubusercontent.com/billcccheng/ptt-crawler-indexer/threading/data/data-"+ i +".json"
-            if(i != 9){
-                $.getJSON(url, function(json) {
-                    load_view(json);
-                });
-            }else {
-                $.getJSON(url, function(json) {
-                    $("#loading").hide();
-                    load_view(json);
-                });
-            }
+						$.getJSON(url, function(json){
+							load_view(json);
+						})
         }
     }
     function on_ready(){
